@@ -10,9 +10,10 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.jetbrains.exposed.sql.transactions.transaction
 
+private val USERNAME = System.getenv("db.username")
+private val PASSWORD = System.getenv("db.password")
 object DatabaseFactory {
     fun init(){
-
         Database.connect(createHikariDataSource())
         transaction {
             SchemaUtils.create(UserTable, FollowsTable)
@@ -26,8 +27,8 @@ object DatabaseFactory {
         val hikariConfig = HikariConfig().apply {
             driverClassName = driverClass
             setJdbcUrl(jdbcUrl)
-            username = "postgres"
-            password = "owolabi4373"
+            username = USERNAME
+            password = PASSWORD
             maximumPoolSize = 3
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"

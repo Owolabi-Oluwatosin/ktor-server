@@ -34,7 +34,7 @@ class FollowsRepositoryImpl(
                     code = HttpStatusCode.InternalServerError,
                     data =  FollowAndUnfollowResponse(
                         success = false,
-                        message = "Oops, something went wrong on our side, please try again!"
+                        message = "Oops, something went wrong on our side, please try again later!"
                     )
                 )
             }
@@ -56,7 +56,7 @@ class FollowsRepositoryImpl(
                 code = HttpStatusCode.InternalServerError,
                 data =  FollowAndUnfollowResponse(
                     success = false,
-                    message = "Oops, something went wrong on our side, please try again!"
+                    message = "Oops, something went wrong on our side, please try again later!"
                 )
             )
         }

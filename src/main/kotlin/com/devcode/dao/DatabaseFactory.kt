@@ -1,6 +1,7 @@
 package com.devcode.dao
 
-import com.devcode.model.UserRow
+import com.devcode.dao.follows.FollowsTable
+import com.devcode.dao.user.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ object DatabaseFactory {
 
         Database.connect(createHikariDataSource())
         transaction {
-            SchemaUtils.create(UserRow)
+            SchemaUtils.create(UserTable, FollowsTable)
         }
     }
 

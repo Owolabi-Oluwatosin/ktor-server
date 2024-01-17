@@ -1,4 +1,4 @@
-package com.devcode.repository.user
+package com.devcode.repository.auth
 
 import com.devcode.dao.user.UserDao
 import com.devcode.model.AuthResponce
@@ -10,9 +10,9 @@ import com.devcode.security.hashPassword
 import com.devcode.util.Responce
 import io.ktor.http.*
 
-class UserRepositoryImpl(
+class AuthRepositoryImpl(
     private val userDao: UserDao
-) : UserRepository {
+) : AuthRepository {
     override suspend fun signUp(params: SignUpParams): Responce<AuthResponce> {
         return if (userAlreadyExist(params.email)){
             Responce.Error(
@@ -64,6 +64,8 @@ class UserRepositoryImpl(
                             name = user.name,
                             bio = user.bio,
                             token = generateToken(params.email),
+                            followersCount = user.followersCount,
+                            followingCount = user.followingCount
                         )
                     )
                 )

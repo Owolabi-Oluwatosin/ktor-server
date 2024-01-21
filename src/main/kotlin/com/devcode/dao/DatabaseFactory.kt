@@ -1,6 +1,8 @@
 package com.devcode.dao
 
 import com.devcode.dao.follows.FollowsTable
+import com.devcode.dao.post.PostTable
+import com.devcode.dao.post_likes.PostLikesTable
 import com.devcode.dao.user.UserTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -16,7 +18,7 @@ object DatabaseFactory {
     fun init(){
         Database.connect(createHikariDataSource())
         transaction {
-            SchemaUtils.create(UserTable, FollowsTable)
+            SchemaUtils.create(UserTable, FollowsTable, PostTable, PostLikesTable)
         }
     }
 
